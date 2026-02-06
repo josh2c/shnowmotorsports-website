@@ -65,7 +65,7 @@ function wheelBodyConfig(radius: number) {
   };
 }
 
-const MODEL_PATH = `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/models/skyline-r34.glb`;
+const MODEL_PATH = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/models/skyline-r34.glb`;
 
 export default function Car() {
   const { scene } = useGLTF(MODEL_PATH);

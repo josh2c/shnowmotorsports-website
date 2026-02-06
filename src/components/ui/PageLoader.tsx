@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/cn";
+import { basePath } from "@/lib/base-path";
 
 export default function PageLoader() {
   const [loading, setLoading] = useState(true);
@@ -37,7 +38,7 @@ export default function PageLoader() {
     >
       <div className="flex flex-col items-center">
         <Image
-          src="/images/brand/logo.png"
+          src={`${basePath}/images/brand/logo.png`}
           alt="Shnow Motorsports"
           width={200}
           height={50}

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/cn";
+import { basePath } from "@/lib/base-path";
 import { socialLinks } from "@/lib/site-data";
 
 export default function Navbar() {
@@ -36,7 +37,7 @@ export default function Navbar() {
         {/* Logo */}
         <a href="#" className="relative h-10 w-40">
           <Image
-            src="/images/brand/logo.png"
+            src={`${basePath}/images/brand/logo.png`}
             alt="Shnow Motorsports"
             fill
             className="object-contain object-left"

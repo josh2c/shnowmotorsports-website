@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { basePath } from "@/lib/base-path";
 
 export default function Hero() {
   const [visible, setVisible] = useState(false);
@@ -36,7 +37,7 @@ export default function Hero() {
           style={cellStyle(0)}
         >
           <Image
-            src="/images/hero/dion.webp"
+            src={`${basePath}/images/hero/dion.webp`}
             alt="Dion Dawkins — Shnow Motorsports"
             fill
             className="object-cover object-top"
@@ -63,7 +64,7 @@ export default function Hero() {
           style={cellStyle(200)}
         >
           <Image
-            src="/images/hero/car.webp"
+            src={`${basePath}/images/hero/car.webp`}
             alt="Shnow Motorsports drift car"
             fill
             className="object-cover object-center"
@@ -94,7 +95,7 @@ export default function Hero() {
           style={cellStyle(400)}
         >
           <Image
-            src="/images/hero/stickers.png"
+            src={`${basePath}/images/hero/stickers.png`}
             alt="Shnow Motorsports logos"
             fill
             className="object-contain object-center p-6"

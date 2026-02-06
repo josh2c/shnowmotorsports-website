@@ -3,6 +3,7 @@
 import { useRef, useEffect } from "react";
 import Image from "next/image";
 import gsap from "gsap";
+import { basePath } from "@/lib/base-path";
 import { registerGSAPPlugins } from "@/lib/gsap-registry";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
@@ -45,7 +46,7 @@ export default function Showcase() {
             {/* Product 1 — Snowman shirt */}
             <a href="https://shnowstore.com" target="_blank" rel="noopener noreferrer" className="flex-1 relative bg-black flex items-center justify-center p-6 hover:bg-white/5 transition-colors duration-300 cursor-pointer">
               <Image
-                src="/images/showcase/snowman-shirt.webp"
+                src={`${basePath}/images/showcase/snowman-shirt.webp`}
                 alt="Shnow Cold skull tee"
                 width={400}
                 height={400}
@@ -55,7 +56,7 @@ export default function Showcase() {
             {/* Product 2 — Helmet shirt */}
             <a href="https://shnowstore.com" target="_blank" rel="noopener noreferrer" className="flex-1 relative bg-black flex items-center justify-center p-6 hover:bg-white/5 transition-colors duration-300 cursor-pointer">
               <Image
-                src="/images/showcase/shop-helmet.webp"
+                src={`${basePath}/images/showcase/shop-helmet.webp`}
                 alt="Shnow Motorsports helmet tee design"
                 width={400}
                 height={400}
@@ -89,7 +90,7 @@ export default function Showcase() {
         {/* Top right — goggles with snowflakes */}
         <div className="showcase-cell md:col-start-3 md:row-start-1 relative min-h-[250px] md:min-h-0 bg-black overflow-hidden flex items-center justify-center p-8">
           <Image
-            src="/images/showcase/goggles.avif"
+            src={`${basePath}/images/showcase/goggles.avif`}
             alt="Shnow Motorsports snow goggles"
             width={500}
             height={500}
@@ -122,8 +123,8 @@ export default function Showcase() {
             playsInline
             className="absolute inset-0 w-full h-full object-cover"
           >
-            <source src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/hero/motorvid.webm`} type="video/webm" />
-            <source src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/hero/motorvid.mp4`} type="video/mp4" />
+            <source src={`${basePath}/images/hero/motorvid.webm`} type="video/webm" />
+            <source src={`${basePath}/images/hero/motorvid.mp4`} type="video/mp4" />
           </video>
         </div>
       </div>

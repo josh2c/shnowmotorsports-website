@@ -230,7 +230,7 @@ function LightPoles() {
   );
 }
 
-const RACE_TRACK_PATH = `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/models/race-track.glb`;
+const RACE_TRACK_PATH = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/models/race-track.glb`;
 
 function RaceTrackModel() {
   const { scene } = useGLTF(RACE_TRACK_PATH);
