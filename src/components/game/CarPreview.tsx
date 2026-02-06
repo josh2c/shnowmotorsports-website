@@ -5,7 +5,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 
-const MODEL_PATH = "/models/skyline-r34.glb";
+const MODEL_PATH = `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/models/skyline-r34.glb`;
 
 function MiniCar() {
   const { scene } = useGLTF(MODEL_PATH);

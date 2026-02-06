@@ -122,8 +122,8 @@ export default function Showcase() {
             playsInline
             className="absolute inset-0 w-full h-full object-cover"
           >
-            <source src="/images/hero/motorvid.webm" type="video/webm" />
-            <source src="/images/hero/motorvid.mp4" type="video/mp4" />
+            <source src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/hero/motorvid.webm`} type="video/webm" />
+            <source src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/hero/motorvid.mp4`} type="video/mp4" />
           </video>
         </div>
       </div>
