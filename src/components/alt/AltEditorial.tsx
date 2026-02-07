@@ -7,7 +7,7 @@ export default function AltEditorial() {
   return (
     <section>
       {/* Editorial Section A — Dion portrait with overlapping text */}
-      <div className="relative overflow-hidden py-12 md:py-24 min-h-screen flex items-center">
+      <div className="relative overflow-hidden py-12 md:py-24 md:min-h-screen flex items-center">
         {/* Background text layer (behind image) */}
         <div className="absolute inset-0 flex items-center" style={{ zIndex: 1 }}>
           <div
@@ -46,7 +46,7 @@ export default function AltEditorial() {
       </div>
 
       {/* Editorial Section B — Drift car with overlapping text */}
-      <div className="relative overflow-hidden py-12 md:py-24 min-h-screen flex items-center">
+      <div className="relative overflow-hidden py-12 md:py-24 md:min-h-screen flex items-center">
         {/* Background text layer */}
         <div className="absolute inset-0 flex items-start pointer-events-none" style={{ zIndex: 1 }}>
           <div
