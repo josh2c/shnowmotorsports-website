@@ -70,6 +70,8 @@ const popups: PopupWindow[] = [
   },
 ];
 
+const mobileRotations = ["-2deg", "1.5deg", "-1deg", "2deg"];
+
 function XPCloseButton() {
   return (
     <div className="w-[18px] h-[18px] bg-[#E04343] border border-white/40 rounded-sm flex items-center justify-center text-white text-[10px] font-bold leading-none">
@@ -94,9 +96,121 @@ function XPMaximize() {
   );
 }
 
+function PopupCard({ popup, rotate }: { popup: PopupWindow; rotate?: string }) {
+  return (
+    <div
+      className="rounded-t-lg overflow-hidden shadow-[4px_4px_20px_rgba(0,0,0,0.6)]"
+      style={{ rotate: rotate }}
+    >
+      {/* Title bar */}
+      <div
+        className="flex items-center justify-between px-2 py-1"
+        style={{
+          background:
+            "linear-gradient(180deg, #cc1a1a 0%, #a01515 40%, #b01818 60%, #e63636 100%)",
+        }}
+      >
+        <span className="text-white text-xs font-bold truncate pr-2 drop-shadow-[0_1px_1px_rgba(0,0,0,0.5)]">
+          {popup.title}
+        </span>
+        <div className="flex items-center gap-[2px] shrink-0">
+          <XPMinimize />
+          <XPMaximize />
+          <XPCloseButton />
+        </div>
+      </div>
+
+      {/* Window body */}
+      <div className="bg-[#ECE9D8] p-4 border-x-2 border-b-2 border-[#cc1a1a]/30">
+        <div className="flex items-center gap-3 mb-3">
+          <svg
+            className="w-10 h-10 text-black shrink-0"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path d={popup.icon} />
+          </svg>
+          <div>
+            <p className="text-[#000] text-sm font-bold uppercase tracking-wide">
+              {popup.platform}
+            </p>
+            <p className="text-[#555] text-xs">
+              {popup.handle}
+            </p>
+          </div>
+        </div>
+
+        <a
+          href={popup.href}
+          target={popup.href.startsWith("http") ? "_blank" : undefined}
+          rel={popup.href.startsWith("http") ? "noopener noreferrer" : undefined}
+          className="block w-full py-1.5 text-xs font-bold uppercase tracking-wider text-black text-center rounded-sm border border-[#7a1010] active:translate-y-px"
+          style={{
+            background:
+              "linear-gradient(180deg, #fff 0%, #ECE9D8 50%, #D6D0BC 100%)",
+            boxShadow:
+              "inset 0 1px 0 #fff, inset 0 -1px 0 #ACA899, 1px 1px 2px rgba(0,0,0,0.2)",
+          }}
+        >
+          {popup.buttonLabel}
+        </a>
+      </div>
+    </div>
+  );
+}
+
+function NewsletterCard({ rotate }: { rotate?: string }) {
+  return (
+    <div
+      className="rounded-t-lg overflow-hidden shadow-[4px_4px_20px_rgba(0,0,0,0.6)]"
+      style={{ rotate: rotate }}
+    >
+      <div
+        className="flex items-center justify-between px-2 py-1"
+        style={{
+          background:
+            "linear-gradient(180deg, #cc1a1a 0%, #a01515 40%, #b01818 60%, #e63636 100%)",
+        }}
+      >
+        <span className="text-white text-xs font-bold truncate pr-2 drop-shadow-[0_1px_1px_rgba(0,0,0,0.5)]">
+          Newsletter.exe — SUBSCRIBE
+        </span>
+        <div className="flex items-center gap-[2px] shrink-0">
+          <XPMinimize />
+          <XPMaximize />
+          <XPCloseButton />
+        </div>
+      </div>
+      <div className="bg-[#ECE9D8] p-4 border-x-2 border-b-2 border-[#cc1a1a]/30">
+        <p className="text-[#000] text-xs mb-3">
+          Sign up with your email address to receive news and updates.
+        </p>
+        <div className="flex gap-2">
+          <input
+            type="email"
+            placeholder="you@email.com"
+            className="flex-1 px-2 py-1.5 text-xs text-black bg-white border border-[#7f9db9] rounded-sm outline-none focus:border-[#cc1a1a]"
+          />
+          <button
+            className="px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-black cursor-pointer rounded-sm border border-[#7a1010] active:translate-y-px shrink-0"
+            style={{
+              background:
+                "linear-gradient(180deg, #fff 0%, #ECE9D8 50%, #D6D0BC 100%)",
+              boxShadow:
+                "inset 0 1px 0 #fff, inset 0 -1px 0 #ACA899, 1px 1px 2px rgba(0,0,0,0.2)",
+            }}
+          >
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function SplitBanner() {
   return (
-    <section className="min-h-screen bg-[var(--accent-red)] relative overflow-hidden pt-24 md:pt-32">
+    <section className="bg-[var(--accent-red)] relative overflow-hidden">
       {/* Empty bento grid outlines as background */}
       <div className="absolute inset-0 grid grid-cols-1 md:grid-cols-3 grid-rows-3 gap-px bg-[#ff2d2d]/20">
         {Array.from({ length: 9 }).map((_, i) => (
@@ -113,133 +227,51 @@ export default function SplitBanner() {
         }}
       />
 
-      {/* Newsletter signup popup */}
-      <div
-        className="absolute select-none"
-        style={{
-          top: "55%",
-          left: "55%",
-          rotate: "-2deg",
-          zIndex: 6,
-          width: "300px",
-        }}
-      >
-        <div className="rounded-t-lg overflow-hidden shadow-[4px_4px_20px_rgba(0,0,0,0.6)]">
-          <div
-            className="flex items-center justify-between px-2 py-1"
-            style={{
-              background:
-                "linear-gradient(180deg, #cc1a1a 0%, #a01515 40%, #b01818 60%, #e63636 100%)",
-            }}
-          >
-            <span className="text-white text-xs font-bold truncate pr-2 drop-shadow-[0_1px_1px_rgba(0,0,0,0.5)]">
-              Newsletter.exe — SUBSCRIBE
-            </span>
-            <div className="flex items-center gap-[2px] shrink-0">
-              <XPMinimize />
-              <XPMaximize />
-              <XPCloseButton />
-            </div>
+      {/* ── Mobile layout: stacked grid ── */}
+      <div className="md:hidden relative z-10 px-6 py-16 flex flex-col gap-6 items-center">
+        {popups.map((popup, i) => (
+          <div key={i} className="w-full max-w-[320px]" style={{ rotate: mobileRotations[i] }}>
+            <PopupCard popup={popup} />
           </div>
-          <div className="bg-[#ECE9D8] p-4 border-x-2 border-b-2 border-[#cc1a1a]/30">
-            <p className="text-[#000] text-xs mb-3">
-              Sign up with your email address to receive news and updates.
-            </p>
-            <div className="flex gap-2">
-              <input
-                type="email"
-                placeholder="you@email.com"
-                className="flex-1 px-2 py-1.5 text-xs text-black bg-white border border-[#7f9db9] rounded-sm outline-none focus:border-[#cc1a1a]"
-              />
-              <button
-                className="px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-black cursor-pointer rounded-sm border border-[#7a1010] active:translate-y-px shrink-0"
-                style={{
-                  background:
-                    "linear-gradient(180deg, #fff 0%, #ECE9D8 50%, #D6D0BC 100%)",
-                  boxShadow:
-                    "inset 0 1px 0 #fff, inset 0 -1px 0 #ACA899, 1px 1px 2px rgba(0,0,0,0.2)",
-                }}
-              >
-                OK
-              </button>
-            </div>
-          </div>
+        ))}
+        <div className="w-full max-w-[320px]" style={{ rotate: "-1.5deg" }}>
+          <NewsletterCard />
         </div>
       </div>
 
-      {/* Popup windows */}
-      {popups.map((popup, i) => (
+      {/* ── Desktop layout: scattered absolute positioning ── */}
+      <div className="hidden md:block relative min-h-screen pt-32">
+        {/* Newsletter signup popup */}
         <div
-          key={i}
           className="absolute select-none"
           style={{
-            top: popup.top,
-            left: popup.left,
-            rotate: popup.rotate,
-            zIndex: popup.zIndex,
-            width: popup.width,
+            top: "55%",
+            left: "55%",
+            rotate: "-2deg",
+            zIndex: 6,
+            width: "300px",
           }}
         >
-          {/* Window chrome */}
-          <div className="rounded-t-lg overflow-hidden shadow-[4px_4px_20px_rgba(0,0,0,0.6)]">
-            {/* Title bar — XP blue gradient */}
-            <div
-              className="flex items-center justify-between px-2 py-1"
-              style={{
-                background:
-                  "linear-gradient(180deg, #cc1a1a 0%, #a01515 40%, #b01818 60%, #e63636 100%)",
-              }}
-            >
-              <span className="text-white text-xs font-bold truncate pr-2 drop-shadow-[0_1px_1px_rgba(0,0,0,0.5)]">
-                {popup.title}
-              </span>
-              <div className="flex items-center gap-[2px] shrink-0">
-                <XPMinimize />
-                <XPMaximize />
-                <XPCloseButton />
-              </div>
-            </div>
-
-            {/* Window body */}
-            <div className="bg-[#ECE9D8] p-4 border-x-2 border-b-2 border-[#cc1a1a]/30">
-              {/* Platform icon */}
-              <div className="flex items-center gap-3 mb-3">
-                <svg
-                  className="w-10 h-10 text-black shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d={popup.icon} />
-                </svg>
-                <div>
-                  <p className="text-[#000] text-sm font-bold uppercase tracking-wide">
-                    {popup.platform}
-                  </p>
-                  <p className="text-[#555] text-xs">
-                    {popup.handle}
-                  </p>
-                </div>
-              </div>
-
-              {/* XP-style button */}
-              <a
-                href={popup.href}
-                target={popup.href.startsWith("http") ? "_blank" : undefined}
-                rel={popup.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                className="block w-full py-1.5 text-xs font-bold uppercase tracking-wider text-black text-center rounded-sm border border-[#7a1010] active:translate-y-px"
-                style={{
-                  background:
-                    "linear-gradient(180deg, #fff 0%, #ECE9D8 50%, #D6D0BC 100%)",
-                  boxShadow:
-                    "inset 0 1px 0 #fff, inset 0 -1px 0 #ACA899, 1px 1px 2px rgba(0,0,0,0.2)",
-                }}
-              >
-                {popup.buttonLabel}
-              </a>
-            </div>
-          </div>
+          <NewsletterCard />
         </div>
-      ))}
+
+        {/* Popup windows */}
+        {popups.map((popup, i) => (
+          <div
+            key={i}
+            className="absolute select-none"
+            style={{
+              top: popup.top,
+              left: popup.left,
+              rotate: popup.rotate,
+              zIndex: popup.zIndex,
+              width: popup.width,
+            }}
+          >
+            <PopupCard popup={popup} />
+          </div>
+        ))}
+      </div>
     </section>
   );
 }

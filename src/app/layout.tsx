@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Oswald, Playfair_Display } from "next/font/google";
+import localFont from "next/font/local";
 import LenisProvider from "@/providers/LenisProvider";
 import SnowCursorTrail from "@/components/ui/SnowCursorTrail";
 import "./globals.css";
@@ -22,6 +23,12 @@ const playfair = Playfair_Display({
   display: "swap",
 });
 
+const platinumSign = localFont({
+  src: "../fonts/PlatinumSign.ttf",
+  variable: "--font-platinum-sign",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Shnow Motorsports | Precision. Power. Victory.",
   description:
@@ -40,7 +47,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${oswald.variable} ${playfair.variable}`}>
+    <html lang="en" className={`${inter.variable} ${oswald.variable} ${playfair.variable} ${platinumSign.variable}`}>
       <body className="font-[family-name:var(--font-inter)]">
         <SnowCursorTrail />
         <LenisProvider>{children}</LenisProvider>
