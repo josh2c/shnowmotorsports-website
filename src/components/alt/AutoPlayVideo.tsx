@@ -11,6 +11,7 @@ interface AutoPlayVideoProps {
 
 export default function AutoPlayVideo({ webmSrc, mp4Src, poster, className = "" }: AutoPlayVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const hasLoadedRef = useRef(false);
   const [isVisible, setIsVisible] = useState(false);
   const [sourcesLoaded, setSourcesLoaded] = useState(false);
 
@@ -21,7 +22,7 @@ export default function AutoPlayVideo({ webmSrc, mp4Src, poster, className = "" 
 
     const observer = new IntersectionObserver(
       ([entry]) => setIsVisible(entry.isIntersecting),
-      { rootMargin: "200px" } // start loading 200px before visible
+      { rootMargin: "200px" }
     );
 
     observer.observe(video);
@@ -35,10 +36,19 @@ export default function AutoPlayVideo({ webmSrc, mp4Src, poster, className = "" 
     }
   }, [isVisible, sourcesLoaded]);
 
+  // Tell browser to pick up new sources after React renders them
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !sourcesLoaded || hasLoadedRef.current) return;
+
+    video.load();
+    hasLoadedRef.current = true;
+  }, [sourcesLoaded]);
+
   // Play/pause based on visibility
   useEffect(() => {
     const video = videoRef.current;
-    if (!video || !sourcesLoaded) return;
+    if (!video || !hasLoadedRef.current) return;
 
     // Fix React muted prop bug — must set via DOM property
     video.muted = true;
@@ -51,7 +61,6 @@ export default function AutoPlayVideo({ webmSrc, mp4Src, poster, className = "" 
         const p = video.play();
         if (p !== undefined) {
           p.catch(() => {
-            // Retry on first user interaction
             const retry = () => {
               video.muted = true;
               video.play().catch(() => {});
