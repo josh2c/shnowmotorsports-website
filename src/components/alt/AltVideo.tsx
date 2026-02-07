@@ -1,5 +1,4 @@
 import { basePath } from "@/lib/base-path";
-import AutoPlayVideo from "@/components/alt/AutoPlayVideo";
 
 const ALT_RED = "#ff2d2d";
 
@@ -8,12 +7,18 @@ export default function AltVideo() {
     <section>
       {/* Full-bleed video */}
       <div className="relative w-full h-[70vh] md:h-screen overflow-hidden">
-        <AutoPlayVideo
-          webmSrc={`${basePath}/images/hero/motorvid.webm`}
-          mp4Src={`${basePath}/images/hero/motorvid.mp4`}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
           poster={`${basePath}/images/hero/car.webp`}
           className="absolute inset-0 w-full h-full object-cover"
-        />
+        >
+          <source src={`${basePath}/images/hero/motorvid.mp4`} type="video/mp4" />
+          <source src={`${basePath}/images/hero/motorvid.webm`} type="video/webm" />
+        </video>
       </div>
 
       {/* Info bar */}

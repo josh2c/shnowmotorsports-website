@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { basePath } from "@/lib/base-path";
-import AutoPlayVideo from "@/components/alt/AutoPlayVideo";
+import LazyVideo from "@/components/alt/LazyVideo";
 
 const ALT_RED = "#ff2d2d";
 
@@ -88,7 +88,7 @@ export default function AltEditorial() {
       {/* Drift video — same size as car image above */}
       <div className="py-6 md:py-12 flex justify-start">
         <div className="relative w-[60%] md:w-[50%] ml-[15%] md:ml-[25%] aspect-[16/10] max-h-[60vh] overflow-hidden">
-          <AutoPlayVideo
+          <LazyVideo
             webmSrc={`${basePath}/images/hero/drift2.webm`}
             mp4Src={`${basePath}/images/hero/drift2.mp4`}
             poster={`${basePath}/images/hero/drift2-poster.jpg`}
