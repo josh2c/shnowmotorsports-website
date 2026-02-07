@@ -1,23 +1,27 @@
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import PageLoader from "@/components/ui/PageLoader";
-import Hero from "@/components/sections/Hero";
+import AltLoader from "@/components/alt/AltLoader";
+import AltNavbar from "@/components/alt/AltNavbar";
+import AltHero from "@/components/alt/AltHero";
+import AltVideo from "@/components/alt/AltVideo";
+import AltAbout from "@/components/alt/AltAbout";
+import AltEditorial from "@/components/alt/AltEditorial";
+import AltShop from "@/components/alt/AltShop";
+import AltFooter from "@/components/alt/AltFooter";
 import Game from "@/components/sections/Game";
-import Showcase from "@/components/sections/Showcase";
-import SplitBanner from "@/components/sections/SplitBanner";
 
 export default function Home() {
   return (
-    <>
-      <PageLoader />
-      <Navbar />
-      <main>
-        <Hero />
-        <Showcase />
-        <SplitBanner />
-      </main>
+    <div className="alt-theme">
+      <AltLoader />
+      <AltNavbar />
       <Game />
-      <Footer />
-    </>
+      <main>
+        <AltHero />
+        <AltVideo />
+        <AltAbout />
+        <AltEditorial />
+        <AltShop />
+      </main>
+      <AltFooter />
+    </div>
   );
 }

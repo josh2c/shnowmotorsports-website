@@ -109,7 +109,7 @@ export default function Hero() {
           style={cellStyle(500)}
         >
           <div>
-            <p className="font-[family-name:var(--font-platinum-sign)] text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] text-white leading-[1.15]">
+            <p className="font-[family-name:var(--font-sora)] text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] text-white leading-[1.15]">
               <span className="block whitespace-nowrap">
                 A drift ain&apos;t a drift
               </span>

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Oswald, Playfair_Display } from "next/font/google";
-import localFont from "next/font/local";
+import { Inter, Oswald, Playfair_Display, Sora } from "next/font/google";
 import LenisProvider from "@/providers/LenisProvider";
 import SnowCursorTrail from "@/components/ui/SnowCursorTrail";
 import "./globals.css";
@@ -23,9 +22,9 @@ const playfair = Playfair_Display({
   display: "swap",
 });
 
-const platinumSign = localFont({
-  src: "../fonts/PlatinumSign.ttf",
-  variable: "--font-platinum-sign",
+const sora = Sora({
+  subsets: ["latin"],
+  variable: "--font-sora",
   display: "swap",
 });
 
@@ -47,7 +46,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${oswald.variable} ${playfair.variable} ${platinumSign.variable}`}>
+    <html lang="en" className={`${inter.variable} ${oswald.variable} ${playfair.variable} ${sora.variable}`}>
       <body className="font-[family-name:var(--font-inter)]">
         <SnowCursorTrail />
         <LenisProvider>{children}</LenisProvider>

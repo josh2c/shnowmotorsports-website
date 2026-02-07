@@ -45,17 +45,24 @@ export default function GameModal({ open, onClose }: GameModalProps) {
     return () => window.removeEventListener("keydown", onKey);
   }, [open, handleClose]);
 
-  // Lock body scroll
+  // Lock body scroll + handle browser back button
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
+      window.history.pushState({ game: true }, "");
+      const onPopState = () => handleClose();
+      window.addEventListener("popstate", onPopState);
+      return () => {
+        window.removeEventListener("popstate", onPopState);
+        document.body.style.overflow = "";
+      };
     } else {
       document.body.style.overflow = "";
     }
     return () => {
       document.body.style.overflow = "";
     };
-  }, [open]);
+  }, [open, handleClose]);
 
   if (!open) return null;
 

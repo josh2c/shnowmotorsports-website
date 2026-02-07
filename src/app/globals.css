@@ -123,3 +123,39 @@ body {
     transform: rotate(90deg);
   }
 }
+
+/* ─── Alt Theme (Valiente-inspired) ─── */
+.alt-theme {
+  --alt-bg: #d5d0c4;
+  --alt-text: #ff2d2d;
+  --alt-dark: #1a1a1a;
+
+  background: var(--alt-bg) !important;
+  color: var(--alt-text) !important;
+  min-height: 100vh;
+}
+
+.alt-rotate-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.alt-editorial-text {
+  font-size: clamp(4rem, 12vw, 14rem);
+  line-height: 0.9;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--alt-text);
+}
+
+.alt-text-behind {
+  z-index: 1;
+}
+
+.alt-text-front {
+  z-index: 3;
+}
+
+.alt-image-middle {
+  z-index: 2;
+}

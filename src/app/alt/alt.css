@@ -1,0 +1,37 @@
+.alt-theme {
+  --alt-bg: #d5d0c4;
+  --alt-text: #e63a1e;
+  --alt-dark: #1a1a1a;
+
+  background: var(--alt-bg);
+  color: var(--alt-text);
+  min-height: 100vh;
+}
+
+/* Rotated vertical text for right sidebar */
+.alt-rotate-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+/* Editorial text that overlaps images */
+.alt-editorial-text {
+  font-size: clamp(4rem, 12vw, 14rem);
+  line-height: 0.9;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--alt-text);
+}
+
+/* Ensure text can layer over and behind images */
+.alt-text-behind {
+  z-index: 1;
+}
+
+.alt-text-front {
+  z-index: 3;
+}
+
+.alt-image-middle {
+  z-index: 2;
+}
