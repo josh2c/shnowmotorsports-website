@@ -83,6 +83,23 @@ export default function AltEditorial() {
           </div>
         </div>
       </div>
+
+      {/* Drift video — same size as car image above */}
+      <div className="py-6 md:py-12 flex justify-start">
+        <div className="relative w-[60%] md:w-[50%] ml-[15%] md:ml-[25%] aspect-[16/10] max-h-[60vh] overflow-hidden">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster={`${basePath}/images/hero/car.webp`}
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source src={`${basePath}/images/hero/drift2.webm`} type="video/webm" />
+            <source src={`${basePath}/images/hero/drift2.mp4`} type="video/mp4" />
+          </video>
+        </div>
+      </div>
     </section>
   );
 }
